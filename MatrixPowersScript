@@ -5,7 +5,7 @@ for b in 3 9 13 27
 do
 	filename=n_k_b${b}_GPU.txt
 	echo  $filename
-	for N in 1000000
+	for N in 2000 120000 1000000
 	do
 		echo "" >> ${filename}
 		echo "  #Data " >> ${filename}
