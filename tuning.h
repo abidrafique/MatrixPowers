@@ -2,7 +2,7 @@
 #define TUNING_H
 
 
-#define BAND_SIZE     27  
+#define BAND_SIZE     13  
 #define NUM_MATRICES    8 
 
 #define NUM_THREADS     512	 
@@ -16,7 +16,7 @@
 #define MATRIX_POWERS_THREAD_STORAGE  THREAD_STORAGE  
 #define HALF_BAND_SIZE  ((COLS-1)/2)
 //#define S_PARAM         64 
-#define S_PARAM_LIMIT  16 
+#define S_PARAM_LIMIT  41 
 #define N_ITERATIONS   S_PARAM
 
 

@@ -122,11 +122,18 @@ int main(int argc, char* argv[])
 
 
 	cudaFuncSetCacheConfig(matrix_powers_kernel_3, cudaFuncCachePreferShared);
-	cuda_sync();
-	ts = timestamp();
-        matrix_powers_kernel_3<<<num_blks,MATRIX_POWERS_NUM_THREADS>>>(d_a,d_x,d_y,m,bR,S_PARAM,0);
-	cuda_sync();
-	total = timestamp() - ts;
+	double deltaTime;
+	total =0;
+	for(int loop =0 ;loop< 20;loop++)
+	{
+		cuda_sync();
+		ts = timestamp();
+	        matrix_powers_kernel_3<<<num_blks,MATRIX_POWERS_NUM_THREADS>>>(d_a,d_x,d_y,m,bR,S_PARAM,0);
+		cuda_sync();
+		deltaTime = timestamp() - ts;
+		total = total+deltaTime;
+	}
+	total = total/20;	
 	cudaMemcpy(y1,d_y,ROWS*S_PARAM*(sizeof(float)),cudaMemcpyDeviceToHost);
 	flops = S_PARAM*(2*num_entries - 1);
 	gflops3 = flops / 1000000000.0;
